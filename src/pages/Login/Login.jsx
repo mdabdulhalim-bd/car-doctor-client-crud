@@ -23,25 +23,21 @@ const Login = () => {
                 const loggedUser = {
                     email: user.email
                 }
-                // console.log(user);
-                
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('http://localhost:5000/jwt',{
                     method:'POST',
                     headers:{
-                        'content-type': 'application/json'
+                        'content-type':'application/json'
                     },
                     body:JSON.stringify(loggedUser)
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log('jwt response',data)
-
-                    // warning: local storage is not best ( it's second best)
-                    // Save token to the localstorage
-                    localStorage.setItem('car-access-token', data.token)
+                    console.log('car access token :', data);
+                    localStorage.setItem('car-access-token',data.token)
                     navigate(from, {replace:true})
                 })
+               
             })
             .catch(error => console.log(error));
     }
